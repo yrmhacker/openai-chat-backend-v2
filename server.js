@@ -7,7 +7,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// ✅ Use your environment variable
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -28,12 +27,12 @@ app.post("/chat", async (req, res) => {
     res.json({ reply: completion.choices[0].message.content });
 
   } catch (error) {
-    console.error("❌ OpenAI Error:", error.message);
+    console.error("OpenAI Error:", error.message);
     res.status(500).json({ error: "OpenAI API error occurred." });
   }
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`✅ OpenAI Chatbot running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
